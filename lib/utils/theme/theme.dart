@@ -6,9 +6,11 @@ const Color textColor = Colors.black;
 // const Color hintColor = Color.fromRGBO(47, 46, 43, 100);
 const Color hintColor = Color.fromRGBO(151, 151, 151, 100);
 const Color subTextColor = Color.fromRGBO(47, 46, 43, 100);
+const Color bottomBarColor = Color.fromRGBO(21, 21, 21, 95);
 const Color primaryColorLT = Colors.white;
 const Color primaryColorDK = Colors.black;
 const Color secondaryColor = Color.fromRGBO(151, 151, 151, 100);
+const Color darkGrey = Color.fromARGB(1000, 231, 231, 231);
 
 ///Text
 const bodyText1 =

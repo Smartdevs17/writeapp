@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       title: "Write_",
-      initialRoute: Routes.auth,
+      initialRoute: Routes.home,
       getPages: routes,
     );
   }

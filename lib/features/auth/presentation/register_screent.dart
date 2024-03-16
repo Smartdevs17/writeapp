@@ -24,7 +24,7 @@ class RegisterScreen extends StatelessWidget {
               TextFormField(
                 style: const TextStyle(color: primaryColorDK),
                 textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.name,
                 decoration: inputDecoration.copyWith(
                     hintText: "Name",
                     hintStyle: const TextStyle(
