@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 //static colors
 const Color textColor = Colors.black;
@@ -19,8 +20,32 @@ const bodyText1 =
 const bodyText2 =
     TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal);
 
-///App Theme
+// ///App Theme
+// final ThemeData appTheme = ThemeData(
+//   appBarTheme: const AppBarTheme(
+//     centerTitle: true,
+//     backgroundColor: Colors.black,
+//     elevation: 0.0,
+//     titleTextStyle: TextStyle(
+//       color: Colors.white,
+//       fontSize: 20,
+//       fontWeight: FontWeight.bold,
+//     ),
+//   ),
+//   tabBarTheme: const TabBarTheme(
+//       labelColor: Colors.white, unselectedLabelColor: Colors.grey),
+//   fontFamily: "NunitoSans",
+//   inputDecorationTheme: const InputDecorationTheme(),
+//   elevatedButtonTheme: elevatedButtonThemeData,
+//   textTheme: const TextTheme(
+//     bodyLarge: bodyText1,
+//     bodyMedium: bodyText2,
+//   ),
+// );
+
+/// App Theme
 final ThemeData appTheme = ThemeData(
+  // Existing appBarTheme, tabBarTheme, inputDecorationTheme, elevatedButtonTheme
   appBarTheme: const AppBarTheme(
     centerTitle: true,
     backgroundColor: Colors.black,
@@ -33,13 +58,14 @@ final ThemeData appTheme = ThemeData(
   ),
   tabBarTheme: const TabBarTheme(
       labelColor: Colors.white, unselectedLabelColor: Colors.grey),
-  fontFamily: "NunitoSans",
   inputDecorationTheme: const InputDecorationTheme(),
   elevatedButtonTheme: elevatedButtonThemeData,
   textTheme: const TextTheme(
     bodyLarge: bodyText1,
     bodyMedium: bodyText2,
   ),
+  // Set default font family to Lato Regular
+  fontFamily: GoogleFonts.lato().fontFamily,
 );
 
 final InputDecoration inputDecoration = InputDecoration(
