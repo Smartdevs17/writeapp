@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:writeapp/common/widgets/bottom_bar.dart';
+import 'package:writeapp/routes/routes.dart';
 import 'package:writeapp/utils/theme/theme.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -21,15 +24,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       backgroundColor: primaryColorDK,
       appBar: AppBar(
-        centerTitle: true,
         backgroundColor: const Color(0xff151515),
-        title: const Text(
-          "Settings",
-          style: TextStyle(
-              color: primaryColorLT,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold),
-        ),
+        actions: [
+          const Text(
+            "Settings",
+            style: TextStyle(
+                color: primaryColorLT,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold),
+          ),
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.auth);
+            },
+            child: const Text(
+              "Logout",
+              style: TextStyle(
+                  color: primaryColorLT,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16.0),
