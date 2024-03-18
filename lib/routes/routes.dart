@@ -11,6 +11,7 @@ class Routes {
   static const String home = "/homeScreen";
   static const String createDocument = "/createDocumentScreen";
   static const String document = "/documentScreen";
+  static const String documentDetails = "/documentDetailsScreen";
   static const String search = "/searchScreen";
   static const String settings = "/settings";
 }

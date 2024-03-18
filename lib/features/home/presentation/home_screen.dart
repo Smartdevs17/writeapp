@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:writeapp/common/widgets/bottom_bar.dart';
 import 'package:writeapp/common/widgets/search_widget.dart';
 import 'package:writeapp/common/widgets/title_widget.dart';
 import 'package:writeapp/features/home/presentation/home_item.dart';
+import 'package:writeapp/routes/routes.dart';
 import 'package:writeapp/utils/theme/theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -42,13 +44,18 @@ class HomeScreen extends StatelessWidget {
                     itemCount: 10,
                     itemBuilder: (context, i) {
                       if (i == 0) {
-                        return Container(
-                          height: 195,
-                          decoration: const BoxDecoration(
-                              color: subTextColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: Image.asset("assets/images/plus.png"),
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.createDocument);
+                          },
+                          child: Container(
+                            height: 195,
+                            decoration: const BoxDecoration(
+                                color: subTextColor,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: Image.asset("assets/images/plus.png"),
+                          ),
                         );
                       } else {
                         return const HomeItem();
