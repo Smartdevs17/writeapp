@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:writeapp/utils/constants/constants.dart';
 import 'package:writeapp/utils/theme/theme.dart';
 import 'package:writeapp/utils/validator/validator.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  bool _invisibleCPassword = true, _invisiblePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +70,7 @@ class RegisterScreen extends StatelessWidget {
                 keyboardType: TextInputType.visiblePassword,
                 decoration: inputDecoration.copyWith(
                     hintText: "Password",
+                    suffixIcon: _showHideIcon(PasswordField.password),
                     hintStyle: const TextStyle(
                         color: secondaryColor,
                         fontSize: 16,
@@ -185,6 +194,35 @@ class RegisterScreen extends StatelessWidget {
             ],
           ),
         )),
+      ),
+    );
+  }
+
+  Widget _showHideIcon(PasswordField passwordField) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (passwordField == PasswordField.password) {
+            _invisiblePassword = !_invisiblePassword;
+          } else {
+            _invisibleCPassword = !_invisibleCPassword;
+          }
+        });
+      },
+      child: Container(
+        height: 40.0,
+        width: 40.0,
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: SvgPicture.asset(
+          passwordField == PasswordField.password
+              ? !_invisiblePassword
+                  ? 'assets/svgs/eye.svg'
+                  : 'assets/svgs/private.svg'
+              : !_invisibleCPassword
+                  ? 'assets/svgs/eye.svg'
+                  : 'assets/svgs/private.svg',
+          color: hintColor,
+        ),
       ),
     );
   }

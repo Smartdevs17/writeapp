@@ -47,7 +47,7 @@ class Validator {
       return "Enter a valid password";
     }
     if (val.length < 5) {
-      return "Password must be 5 characters long";
+      return "Password must be atleast 5 characters long";
     }
     if (!isValidPassword(val)) {
       return "Invalid password";
