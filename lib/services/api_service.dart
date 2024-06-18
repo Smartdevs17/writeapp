@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:writeapp/common/model/api_response_model.dart';
+import 'package:writeapp/routes/routes.dart';
 import 'package:writeapp/utils/action/action.dart';
 import 'package:writeapp/utils/constants/constants.dart';
 
@@ -25,21 +27,19 @@ class ApiService {
       headers: <String, String>{"Content-Type": "application/json"},
       body: jsonEncode(data),
     );
-
+    final dynamic jsonResponse = json.decode(response.body);
     if (response.statusCode == 200) {
-      final dynamic jsonResponse = json.decode(response.body);
       await sandBox.write(Constants.accessToken, jsonResponse["data"]["token"]);
       await prefs.setString(
           Constants.userId, jsonResponse["data"]["ID"].toString());
       return jsonResponse;
     } else {
-      final dynamic jsonResponse = json.decode(response.body);
       return jsonResponse;
     }
   }
 
   ///Register Route
-  Future<bool> register(String name, String email, String password) async {
+  Future<dynamic> register(String name, String email, String password) async {
     Map<String, dynamic> data = <String, dynamic>{
       'name': name,
       'email': email,
@@ -51,10 +51,11 @@ class ApiService {
         ),
         headers: <String, String>{'Content-Type': 'application/json'},
         body: json.encode(data));
+    final dynamic jsonResponse = json.decode(response.body);
     if (response.statusCode == 200) {
-      return true;
+      return jsonResponse;
     } else {
-      return false;
+      return jsonResponse;
     }
   }
 
@@ -86,5 +87,15 @@ class ApiService {
       return ApiResponseModel(
           success: false, message: e.toString(), data: <dynamic, dynamic>{});
     }
+  }
+
+  ///Logout
+  Future<void> logout() async {
+    // await get(path: 'auth/logout');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await sandBox.remove(Constants.accessToken);
+    await prefs.remove(Constants.userId);
+    Get.offAllNamed(Routes.auth);
   }
 }

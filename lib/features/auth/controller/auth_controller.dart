@@ -50,11 +50,12 @@ class AuthController extends GetxController {
 
   Future<dynamic> login(String email, String password) async {
     if (loginValidator(email, password) != null) {
-      //show popp
+      //display error
     } else {
       var user = await _apiService.login(email, password);
       if (user['success'] == false) {
-        Get.snackbar("Error", user['error']);
+        showSnackbar(
+            title: user['message'], message: user['error'], error: true);
       } else {
         showSnackbar(
           title: "Login successful!",
@@ -68,12 +69,20 @@ class AuthController extends GetxController {
 
   Future<void> register(String name, String email, String password) async {
     if ((!isValidEmail(email))) {
-      ///show popup
+      ///display error
     } else {
-      isLoading(true);
-      await _apiService.register(name, email, password);
-      isLoading(false);
-      Get.toNamed(Routes.login);
+      var newUser = await _apiService.register(name, email, password);
+      if (newUser['success'] == false) {
+        showSnackbar(
+            title: newUser['message'], message: newUser['error'], error: true);
+      } else {
+        showSnackbar(
+          title: "Registration successful!",
+          message: "proceed to logiin",
+          error: false,
+        );
+        Get.offAndToNamed(Routes.auth);
+      }
     }
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:writeapp/features/auth/controller/auth_controller.dart';
-import 'package:writeapp/routes/routes.dart';
 import 'package:writeapp/utils/constants/constants.dart';
 import 'package:writeapp/utils/theme/theme.dart';
 import 'package:writeapp/utils/validator/validator.dart';
@@ -21,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _email, _password;
   bool _isLoading = false;
   late AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
-  AuthController _authController = AuthController();
+  final AuthController _authController = AuthController();
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +173,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Container(
+                      InkWell(
+                        onTap: () async {
+                          setState(() {
+                            _autoValidateMode = AutovalidateMode.always;
+                          });
+
+                          if (_email != null && _password != null) {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            await _authController.login(_email!, _password!);
+                          }
+                          setState(() {
+                            _isLoading = false;
+                          });
+                        },
+                        child: Container(
                           height: 70,
                           decoration: const BoxDecoration(
                             color: primaryColorDK,
@@ -183,43 +197,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                 BorderRadius.all(Radius.circular(10.0)),
                           ),
                           child: Center(
-                            child: InkWell(
-                              onTap: () async {
-                                setState(() {
-                                  _autoValidateMode = AutovalidateMode.always;
-                                });
-
-                                if (_email != null && _password != null) {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
-                                  await _authController.login(
-                                      _email!, _password!);
-                                }
-                                // else {
-                                //   Get.snackbar("Error",
-                                //       "Enter a valid email and password");
-                                // }
-                                setState(() {
-                                  _isLoading = false;
-                                });
-                              },
-                              child: _isLoading
-                                  ? const SizedBox(
-                                      width: 24.0,
-                                      height: 24.0,
-                                      child: CircularProgressIndicator(),
-                                    )
-                                  : const Text(
-                                      "Sign In",
-                                      style: TextStyle(
-                                        color: primaryColorLT,
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                            child: _isLoading
+                                ? const SizedBox(
+                                    width: 24.0,
+                                    height: 24.0,
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : const Text(
+                                    "Sign In",
+                                    style: TextStyle(
+                                      color: primaryColorLT,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                            ),
-                          )),
+                                  ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(

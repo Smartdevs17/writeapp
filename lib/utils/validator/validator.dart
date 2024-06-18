@@ -14,10 +14,15 @@ class Validator {
     return password.length >= 5 ? true : false;
   }
 
-  ///Validate Field
-  static bool isValidField(String text) {
-    if (text.isEmpty) return false;
-    return text.length >= 2 ? true : false;
+  ///Validate Name
+  static String? nameValidator(String? val) {
+    if (val == null) {
+      return "Enter a valid name";
+    }
+    if (val.length < 5) {
+      return "Name must be atleast 5 characters long";
+    }
+    return null;
   }
 
   //Validate Email field and ensure its unique
