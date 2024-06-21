@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:writeapp/utils/theme/theme.dart';
+import 'package:intl/intl.dart';
 
 class DocumentItem extends StatelessWidget {
-  const DocumentItem({super.key});
+  final DateTime createdAt;
+  final String title;
+  final int count;
+  const DocumentItem(
+      {super.key,
+      required this.createdAt,
+      required this.title,
+      required this.count});
 
   @override
   Widget build(BuildContext context) {
@@ -13,29 +21,29 @@ class DocumentItem extends StatelessWidget {
         color: primaryColorLT,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "12 Febraury, 2024",
-                style: TextStyle(
+                formatDate(createdAt.toString()),
+                style: const TextStyle(
                     color: Color(0xff2F2E2B),
                     fontSize: 13,
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                "Song for the Old Ones",
+                title.substring(0, 10),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 20,
                     color: primaryColorDK,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "2 Pages",
-                style: TextStyle(
+                "$count Pages",
+                style: const TextStyle(
                     color: Color(0xff2F2E2B),
                     fontSize: 13,
                     fontWeight: FontWeight.w400),
@@ -43,5 +51,11 @@ class DocumentItem extends StatelessWidget {
             ]),
       ),
     );
+  }
+
+  String formatDate(String dateString) {
+    final dateTime = DateTime.parse(dateString);
+    final formatter = DateFormat('d MMMM yyyy');
+    return formatter.format(dateTime);
   }
 }

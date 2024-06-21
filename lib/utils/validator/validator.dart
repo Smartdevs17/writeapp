@@ -60,4 +60,14 @@ class Validator {
       return null;
     }
   }
+
+  //Validator for creating document
+  static String? documentValidator(String? val) {
+    if (val == null) {
+      return "Input a value";
+    }
+    if (val.isEmpty) {
+      return "Please enter a value";
+    }
+  }
 }
