@@ -6,7 +6,6 @@ import 'package:writeapp/common/widgets/title_widget.dart';
 import 'package:writeapp/features/document/controller/document_controller.dart';
 import 'package:writeapp/features/document/presentation/document_details_screen.dart';
 import 'package:writeapp/features/document/presentation/document_item.dart';
-import 'package:writeapp/routes/routes.dart';
 
 class DocumentScreen extends StatefulWidget {
   const DocumentScreen({super.key});
@@ -20,7 +19,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _documentController.onInit();
     super.initState();
   }

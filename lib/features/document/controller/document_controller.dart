@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:writeapp/common/model/api_response_model.dart';
 import 'package:writeapp/features/document/model/document_model.dart';
-import 'package:writeapp/features/home/repository/home_repository.dart';
+import 'package:writeapp/features/document/repository/document_repository.dart';
+import 'package:writeapp/routes/routes.dart';
+import 'package:writeapp/utils/action/action.dart';
 
 class DocumentController extends GetxController {
   RxBool loading = RxBool(false);
@@ -23,13 +27,45 @@ class DocumentController extends GetxController {
   ///Initialize Dcouments
   Future<void> initDcouments() async {
     loading(true);
-    final ApiResponseModel response = await HomeRepository.fetchDocuments();
+    final ApiResponseModel response = await DocumentRepository.fetchDocuments();
     if (response.success) {
       processDocumentsToState(response.data);
       loading(false);
     } else {
       error(true);
       loading(false);
+    }
+    update();
+  }
+
+  //Create Document Controller(Register New Document to Remote Data Source)
+  Future<void> createDocument(Map<String, dynamic> body) async {
+    loading(true);
+    final ApiResponseModel response =
+        await DocumentRepository.createDocument(body);
+    if (response.success) {
+      showSnackbar(title: 'Success!', message: response.message, error: false);
+      documents.add(DocumentModel.fromMap(response.data));
+      Get.toNamed(Routes.document);
+    } else {
+      showSnackbar(title: 'OOPS!', message: response.message, error: true);
+      error(true);
+      loading(false);
+    }
+    update();
+  }
+
+  //Delete Document From Remote Source and State
+  Future<void> deleteDocument(int id) async {
+    loading(true);
+    final ApiResponseModel response =
+        await DocumentRepository.deleteDocument(id);
+    if (response.success) {
+      showSnackbar(title: 'Success!', message: response.message, error: false);
+      documents.removeWhere((element) => element.id == id);
+      Get.toNamed(Routes.document);
+    } else {
+      showSnackbar(title: 'OOPS!', message: response.message, error: true);
     }
     update();
   }

@@ -34,7 +34,7 @@ class DocumentItem extends StatelessWidget {
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                title.substring(0, 10),
+                title.substring(0, 5),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontSize: 20,

@@ -62,12 +62,10 @@ class Validator {
   }
 
   //Validator for creating document
-  static String? documentValidator(String? val) {
-    if (val == null) {
-      return "Input a value";
+  static String? documentValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Field is required';
     }
-    if (val.isEmpty) {
-      return "Please enter a value";
-    }
+    return null;
   }
 }

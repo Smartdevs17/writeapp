@@ -149,14 +149,14 @@ class ApiService {
     required String path,
     required num id,
   }) async {
-    final String? token = Get.find<TokenController>().token.value;
-    log(token ?? '');
+    final String token = Get.find<TokenController>().token.value;
+    log(token);
     try {
       final http.Response response = await http.delete(
         Uri.parse('${Constants.baseUrl}/$path/$id'),
         headers: <String, String>{
           'Content-Type': 'application/json',
-          'Authorization': 'application/json',
+          'Authorization': 'Bearer $token',
         },
       );
       log(response.body.toString());

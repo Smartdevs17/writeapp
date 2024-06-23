@@ -2,12 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:writeapp/features/document/controller/document_controller.dart';
 import 'package:writeapp/features/document/model/document_model.dart';
 import 'package:writeapp/utils/theme/theme.dart';
 
 class DocumentDetailsScreen extends StatelessWidget {
+  final DocumentController _documentController = Get.find();
   final DocumentModel document;
-  const DocumentDetailsScreen({super.key, required this.document});
+  DocumentDetailsScreen({super.key, required this.document});
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +38,17 @@ class DocumentDetailsScreen extends StatelessWidget {
                       "assets/images/logo.png",
                       color: secondaryColor,
                     ),
-                    const Text(
-                      "Share",
-                      style: TextStyle(
-                          color: primaryColorDK,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600),
+                    InkWell(
+                      onTap: () async {
+                        await _documentController.deleteDocument(document.id);
+                      },
+                      child: const Text(
+                        "Delete",
+                        style: TextStyle(
+                            color: primaryColorDK,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ],
                 ),

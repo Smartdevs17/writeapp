@@ -3,8 +3,8 @@ import 'package:writeapp/services/api_service.dart';
 
 class HomeRepository {
   ///Fetch all Documents
-  static Future<ApiResponseModel> fetchDocuments() async {
-    final ApiResponseModel response = await ApiService.get(path: "documents");
-    return response;
-  }
+  // static Future<ApiResponseModel> fetchDocuments() async {
+  //   final ApiResponseModel response = await ApiService.get(path: "documents");
+  //   return response;
+  // }
 }
