@@ -20,6 +20,16 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
   final TextEditingController contentController = TextEditingController();
   late AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
   final bool _isLoading = false;
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    authorController.dispose();
+    countController.dispose();
+    contentController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

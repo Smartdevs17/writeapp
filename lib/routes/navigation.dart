@@ -4,7 +4,6 @@ import 'package:writeapp/features/auth/presentation/login_screen.dart';
 import 'package:writeapp/features/auth/presentation/register_screent.dart';
 import 'package:writeapp/features/auth/presentation/reset_password_screen.dart';
 import 'package:writeapp/features/document/presentation/create_document_screen.dart';
-import 'package:writeapp/features/document/presentation/document_details_screen.dart';
 import 'package:writeapp/features/document/presentation/document_screen.dart';
 import 'package:writeapp/features/home/presentation/home_screen.dart';
 import 'package:writeapp/features/search/presentation/search_screen.dart';
@@ -21,8 +20,6 @@ var routes = [
   GetPage(
       name: Routes.createDocument, page: () => const CreateDocumentScreen()),
   GetPage(name: Routes.document, page: () => const DocumentScreen()),
-  // GetPage(
-  //     name: Routes.documentDetails, page: () => const DocumentDetailsScreen(document: null,)),
   GetPage(name: Routes.search, page: () => const SearchScreen()),
   GetPage(name: Routes.settings, page: () => const SettingsScreen())
 ];

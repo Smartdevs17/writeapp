@@ -19,8 +19,14 @@ class _DocumentScreenState extends State<DocumentScreen> {
 
   @override
   void initState() {
-    _documentController.onInit();
     super.initState();
+    _documentController.onInit();
+  }
+
+  @override
+  void dispose() {
+    _documentController.dispose();
+    super.dispose();
   }
 
   @override
