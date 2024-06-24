@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:writeapp/common/model/api_response_model.dart';
 import 'package:writeapp/features/document/model/document_model.dart';
 import 'package:writeapp/features/document/repository/document_repository.dart';
 import 'package:writeapp/routes/routes.dart';
 import 'package:writeapp/utils/action/action.dart';
+import 'package:writeapp/utils/constants/constants.dart';
 
 class DocumentController extends GetxController {
   RxBool loading = RxBool(false);
@@ -25,7 +27,12 @@ class DocumentController extends GetxController {
   ///Initialize Dcouments
   Future<void> initDcouments() async {
     loading(true);
-    final ApiResponseModel response = await DocumentRepository.fetchDocuments();
+    // final ApiResponseModel response = await DocumentRepository.fetchDocuments();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var userId = prefs.getString(Constants.userId);
+    print(userId);
+    final ApiResponseModel response =
+        await DocumentRepository.fetchUserDocuments(id: userId!);
     if (response.success) {
       processDocumentsToState(response.data);
       loading(false);

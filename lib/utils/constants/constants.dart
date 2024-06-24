@@ -6,11 +6,11 @@ class Constants {
   //Starlink url
   // static const String baseUrl = "http://192.168.1.187:3000/api";
   //Myhot Spot url
-  // static const String baseUrl = "http://192.168.252.80:3000/api";
+  static const String baseUrl = "http://192.168.252.80:3000/api";
   //MyAirtel url
   // static const String baseUrl = "http://192.168.1.179:3000/api";
   //MyMtn Mifi
-  static const String baseUrl = "http://192.168.0.187:3000/api";
+  // static const String baseUrl = "http://192.168.0.187:3000/api";
 
   // AUTH
   static const String STGW = 'Something gone wrong';

@@ -22,4 +22,13 @@ class DocumentRepository {
         await ApiService.delete(path: "documents", id: id);
     return response;
   }
+
+  //Get User Documents
+  static Future<ApiResponseModel> fetchUserDocuments(
+      {required String id}) async {
+    final ApiResponseModel response = await ApiService.get(
+      path: "documents/user/$id",
+    );
+    return response;
+  }
 }
