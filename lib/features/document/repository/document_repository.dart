@@ -31,4 +31,19 @@ class DocumentRepository {
     );
     return response;
   }
+
+  static Future<ApiResponseModel> updateDocument(
+      int id, Map<String, dynamic> body) async {
+    final ApiResponseModel response =
+        await ApiService.put(path: "documents/$id", body: body);
+    return response;
+  }
+
+  static Future<ApiResponseModel> searchUserDocuments(
+      {required String query}) async {
+    final ApiResponseModel response = await ApiService.get(
+      path: "documents/search?search=$query",
+    );
+    return response;
+  }
 }

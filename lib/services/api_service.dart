@@ -28,7 +28,7 @@ class ApiService {
       await _tokenController.setToken(jsonResponse["data"]["token"]);
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString(
-          Constants.userId, jsonResponse["data"]["ID"].toString());
+          Constants.userId, jsonResponse["data"]["id"].toString());
       return jsonResponse;
     } else {
       return jsonResponse;
@@ -120,10 +120,10 @@ class ApiService {
   // HTTP PUT
   static Future<ApiResponseModel> put({
     required String path,
-    required String body,
+    required Map<String, dynamic> body,
   }) async {
-    final String? token = Get.find<TokenController>().token.value;
-    log(token ?? '');
+    final String token = Get.find<TokenController>().token.value;
+    log(token);
     try {
       final http.Response response = await http.put(
         Uri.parse('${Constants.baseUrl}/$path'),

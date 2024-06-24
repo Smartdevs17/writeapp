@@ -14,8 +14,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   // int _selectedPageIndex = 0;
   final PageController _pageController = PageController(initialPage: 0);
   final List<Widget> pages = [
-    const HomeScreen(),
-    const DocumentScreen(),
+    HomeScreen(),
+    DocumentScreen(),
     const SettingsScreen(),
   ];
 

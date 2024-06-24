@@ -3,12 +3,15 @@ import 'package:get/get.dart';
 import 'package:writeapp/common/widgets/bottom_bar.dart';
 import 'package:writeapp/common/widgets/search_widget.dart';
 import 'package:writeapp/common/widgets/title_widget.dart';
+import 'package:writeapp/features/document/controller/document_controller.dart';
 import 'package:writeapp/features/home/presentation/home_item.dart';
 import 'package:writeapp/routes/routes.dart';
 import 'package:writeapp/utils/theme/theme.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final DocumentController _documentController = Get.put(DocumentController());
+
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,11 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              const SearchWidget(),
+              // const SearchWidget(),
+              SearchWidget(
+                onSearchChanged: _documentController.searchDocuments,
+              ),
+
               const SizedBox(
                 height: 20.0,
               ),

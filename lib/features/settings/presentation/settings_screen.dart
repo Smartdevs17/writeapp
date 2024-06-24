@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:writeapp/common/widgets/bottom_bar.dart';
-import 'package:writeapp/routes/routes.dart';
 import 'package:writeapp/services/api_service.dart';
 import 'package:writeapp/utils/theme/theme.dart';
 
@@ -19,7 +16,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool isActiveAS = false;
   bool isActiveSC = false;
   bool isActiveSW = false;
-  ApiService _apiService = ApiService();
+  final ApiService _apiService = ApiService();
 
   @override
   Widget build(BuildContext context) {

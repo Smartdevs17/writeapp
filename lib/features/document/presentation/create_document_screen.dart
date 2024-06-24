@@ -167,7 +167,7 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
                           const SizedBox(height: 20.0),
                           TextFormField(
                             controller: contentController,
-                            maxLines: 10,
+                            maxLines: 20,
                             style: const TextStyle(
                               color: primaryColorDK,
                             ),
